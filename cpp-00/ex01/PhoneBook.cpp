@@ -25,19 +25,20 @@ std::string truncate(const std::string& str, size_t width) {
 }
 
 void PhoneBook::displayPhoneBook() {
-    std::cout << "|" << std::setw(10) << std::right << "Index" << "|"
-    << std::setw(10) << std::right << "First Name" << "|"
-    << std::setw(10) << std::right << "Last Name" << "|"
-    << std::setw(10) << std::right << "Nickname" << "|" << std::endl;
+    std::cout << "|" << std::setw(10) << std::right << std::setfill(' ') << "Index" << "|"
+    << std::setw(10) << std::right << std::setfill(' ') << "First Name" << "|"
+    << std::setw(10) << std::right << std::setfill(' ') << "Last Name" << "|"
+    << std::setw(10) << std::right << std::setfill(' ') << "Nickname" << "|" << std::endl;
 
     for (int i = 0; i < this->book_size; i++)
     {
-        std::cout << "|" << std::setw(10) << std::right << i << "|"
-        << std::setw(10) << std::right << truncate(this->contacts[i].getFirstName(), 10) << "|"
-        << std::setw(10) << std::right << truncate(this->contacts[i].getLastName(), 10) << "|"
-        << std::setw(10) << std::right << truncate(this->contacts[i].getNickname(), 10) << "|"
+        std::cout << "|" << std::setw(10) << std::right << std::setfill(' ') << i << "|"
+        << std::setw(10) << std::right << std::setfill(' ') << truncate(this->contacts[i].getFirstName(), 10) << "|"
+        << std::setw(10) << std::right << std::setfill(' ') << truncate(this->contacts[i].getLastName(), 10) << "|"
+        << std::setw(10) << std::right << std::setfill(' ') << truncate(this->contacts[i].getNickname(), 10) << "|"
         << std::endl;
-    }   
+    }
+
 }
 
 void PhoneBook::printContact(int index) {   
@@ -46,4 +47,5 @@ void PhoneBook::printContact(int index) {
     std::cout << "Nickname: " << this->contacts[index].getNickname() << std::endl; 
     std::cout << "Phone Number: " << this->contacts[index].getPhoneNumber() << std::endl; 
     std::cout << "Darkest Secret: " << this->contacts[index].getDarkestSecret() << std::endl; 
+    std::cout << "\n";
 }

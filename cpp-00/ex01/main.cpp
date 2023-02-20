@@ -15,7 +15,7 @@ void printSquareHeader(const std::string& text, int width, const std::string& te
 }
 
 void add(std::string input[6], PhoneBook& phonebook ) {
-	printSquareHeader("ADD NEW CONTACT", 40, "\033[32m");
+	printSquareHeader("ADD NEW CONTACT", 45, "\033[32m");
 	std::cout << "First Name: ";
 	std::getline(std::cin, input[1]);
 	std::cout << "Last Name: ";
@@ -33,19 +33,19 @@ void add(std::string input[6], PhoneBook& phonebook ) {
 
 void search(std::string input, int index, PhoneBook& phonebook) {
 	
-	printSquareHeader("SEARCH CONTACT", 40, "\033[32m");
+	printSquareHeader("SEARCH CONTACT", 45, "\033[32m");
 	if (phonebook.bookSize() == 0) {
 		std::cout << "\n\033[31mError: PhoneBook is Empty!\033[0m" << std::endl;
 		return;
 	}
 
 	phonebook.displayPhoneBook();
-	std::cout << "Insert Index: ";
+	std::cout << "\n\033[32mInsert Index: \033[0m";
 	std::cin >> index;
 	while (std::cin.fail() || index < 0 || index >= phonebook.bookSize())
 	{
-		std::cout << "Error: Invalid Index!" << std::endl;
-		std::cout << "Insert Index: ";
+		std::cout << "\n\033[31mError: Invalid Index!\033[0m" << std::endl;
+		std::cout << "\n\033[32mInsert Valid Index: \033[0m";
 		std::cin >> index;
 	}
 	phonebook.printContact(index);
@@ -59,11 +59,10 @@ int main()
 	std::string input[6];
 	int index = 0;
 
-	printSquareHeader("WELCOME TO PHONEBOOK", 40, "\033[32m");
-
+	printSquareHeader("WELCOME TO PHONEBOOK", 45, "\033[32m");
 	while (42)
 	{
-		printSquareHeader("CHOOSE OPTION: ADD | SEARCH | EXIT", 40, "\033[32m");
+		printSquareHeader("CHOOSE OPTION: ADD | SEARCH | EXIT", 45, "\033[32m");
 		std::getline(std::cin, input[0]);
 		if (input[0] == "ADD")
 			add(input, phonebook);
