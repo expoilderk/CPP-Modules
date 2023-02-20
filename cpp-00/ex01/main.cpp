@@ -1,8 +1,21 @@
 #include "PhoneBook.hpp"
 
-void add(std::string input[6], PhoneBook& phonebook ) {
+void printSquareHeader(const std::string& text, int width, const std::string& textColor = "") {
+    int textWidth = text.length();
+    int padding = (width - textWidth - 2) / 2;
+    int leftPadding = padding;
+    int rightPadding = width - textWidth - 2 - leftPadding;
+    std::string border(width, '-');
+    std::string leftPaddingStr(leftPadding, ' ');
+    std::string rightPaddingStr(rightPadding, ' ');
+    std::string header = "|" + leftPaddingStr + textColor + text + "\033[0m" + rightPaddingStr + "|";
+    std::cout << std::setw(width) << std::setfill('-') << "" << std::endl;
+    std::cout << std::setfill(' ') << std::left << header << std::endl;
+    std::cout << std::setw(width) << std::setfill('-') << "" << std::endl;
+}
 
-	std::cout << "Enter contact information" << std::endl;
+void add(std::string input[6], PhoneBook& phonebook ) {
+	printSquareHeader("ADD NEW CONTACT", 40, "\033[32m");
 	std::cout << "First Name: ";
 	std::getline(std::cin, input[1]);
 	std::cout << "Last Name: ";
@@ -15,52 +28,43 @@ void add(std::string input[6], PhoneBook& phonebook ) {
 	std::getline(std::cin, input[5]);
 
 	phonebook.addContact(input);
-	std::cout << "Contact added successfully!" << std::endl;
+	std::cout << "\n\033[32mContact saved successfully!\033[0m" << std::endl;
 }
 
 void search(std::string input, int index, PhoneBook& phonebook) {
-	/*
-	- Display the saved contacts as a list of 4 columns: index, first name, last name and nickname.
-	◦ Each column must be 10 characters wide. A pipe character (’|’) separates them. 
-	The text must be right-aligned. If the text is longer than the column,
-	it must be truncated and the last displayable character must be replaced by a dot (’.’).
-	◦ Then, prompt the user again for the index of the entry to display. If the index
-	is out of range or wrong, define a relevant behavior. Otherwise, display the contact information, one field per line.
-
-	- Mostrar os contactos guardados como uma lista de 4 colunas: índice, nome próprio, apelido e apelido.
-	◦ Cada coluna deve ter 10 caracteres de largura. Um carácter de tubo ('|')
-	separa-os. O texto tem de ser alinhado à direita. Se o texto for mais longo
-	do que a coluna, deve ser truncado e o último caractere visível deve ser substituído por um ponto ('.').
-	◦ Em seguida, solicitar novamente ao utilizador o índice da entrada a exibir.
-	Se o índice estiver fora do intervalo ou errado, definir um comportamento
-	relevante. Caso contrário, exibir a informação de contacto, um campo por linha.
-	*/
+	
+	printSquareHeader("SEARCH CONTACT", 40, "\033[32m");
+	if (phonebook.bookSize() == 0) {
+		std::cout << "\n\033[31mError: PhoneBook is Empty!\033[0m" << std::endl;
+		return;
+	}
 
 	phonebook.displayPhoneBook();
-	std::cout << "Enter the search index: ";
+	std::cout << "Insert Index: ";
 	std::cin >> index;
+	while (std::cin.fail() || index < 0 || index >= phonebook.bookSize())
+	{
+		std::cout << "Error: Invalid Index!" << std::endl;
+		std::cout << "Insert Index: ";
+		std::cin >> index;
+	}
 	phonebook.printContact(index);
 	std::cin.clear();
 	std::getline(std::cin, input);
 }
 
-void exit() {
-	
-}
-
 int main()
 {
-	PhoneBook phonebook; //Instancia da classe PhoneBook
+	PhoneBook phonebook;
 	std::string input[6];
 	int index = 0;
 
-	std::cout << "WELCOME TO PHONEBOOK!" << std::endl;
+	printSquareHeader("WELCOME TO PHONEBOOK", 40, "\033[32m");
 
 	while (42)
-	{	
-		std::cout << "\nCHOOSE OPTION: ADD | SEARCH | EXIT " << std::endl;
+	{
+		printSquareHeader("CHOOSE OPTION: ADD | SEARCH | EXIT", 40, "\033[32m");
 		std::getline(std::cin, input[0]);
-		
 		if (input[0] == "ADD")
 			add(input, phonebook);
 		else if (input[0] == "SEARCH")
@@ -69,7 +73,7 @@ int main()
 			std::cout << "Program finished!" << std::endl;
 			break ;
 		} else
-			std::cout << "INVALID INPUT" << std::endl;
+			std::cout << "\033[31mINVALID INPUT!\033[0m" << std::endl;
 	}
 	return 0;
 }

@@ -6,41 +6,38 @@ int PhoneBook::bookSize() {
 
 void PhoneBook::addContact(std::string input[6]) {
 
-    int index;
-
-    index = this->index;
-
-    std::cout << "index: " << this->index << std::endl;
-
-    this->contacts[index].setFirstName(input[1]);
-    this->contacts[index].setLastName(input[2]);
-    this->contacts[index].setNickname(input[3]);
-    this->contacts[index].setPhoneNumber(input[4]);
-    this->contacts[index].setDarkestSecret(input[5]);
-    this->index = (index +1) % 8;
-
-    std::cout << "booksize: " << this->book_size << std::endl;
+    this->contacts[this->index].setFirstName(input[1]);
+    this->contacts[this->index].setLastName(input[2]);
+    this->contacts[this->index].setNickname(input[3]);
+    this->contacts[this->index].setPhoneNumber(input[4]);
+    this->contacts[this->index].setDarkestSecret(input[5]);
+    this->index = (this->index +1) % 8;
 
     if (this->book_size < 8)
-        this->book_size++;    
+        this->book_size++;
+}
+
+std::string truncate(const std::string& str, size_t width) {
+    if (str.length() > width) {
+        return str.substr(0, width - 1) + ".";
+    }
+    return str;
 }
 
 void PhoneBook::displayPhoneBook() {
-    std::cout << "     Index|First Name| Last Name|  Nickname" << std::endl;
+    std::cout << "|" << std::setw(10) << std::right << "Index" << "|"
+    << std::setw(10) << std::right << "First Name" << "|"
+    << std::setw(10) << std::right << "Last Name" << "|"
+    << std::setw(10) << std::right << "Nickname" << "|" << std::endl;
 
     for (int i = 0; i < this->book_size; i++)
     {
-        std::cout << "|";
-        std::cout << i;
-        std::cout << "|";
-        std::cout << this->contacts[i].getFirstName();
-        std::cout << "|";
-        std::cout << this->contacts[i].getLastName(); 
-        std::cout << "|";
-        std::cout << this->contacts[i].getNickname(); 
-        std::cout << "|";
-    }
-    std::cout << std::endl;
+        std::cout << "|" << std::setw(10) << std::right << i << "|"
+        << std::setw(10) << std::right << truncate(this->contacts[i].getFirstName(), 10) << "|"
+        << std::setw(10) << std::right << truncate(this->contacts[i].getLastName(), 10) << "|"
+        << std::setw(10) << std::right << truncate(this->contacts[i].getNickname(), 10) << "|"
+        << std::endl;
+    }   
 }
 
 void PhoneBook::printContact(int index) {   
