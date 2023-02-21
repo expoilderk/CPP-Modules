@@ -1,11 +1,12 @@
 #include "PhoneBook.hpp"
 
-int PhoneBook::bookSize() {
+int PhoneBook::bookSize()
+{
     return this->book_size;
 }
 
-void PhoneBook::addContact(std::string input[6]) {
-
+void PhoneBook::addContact(std::string input[6])
+{
     this->contacts[this->index].setFirstName(input[1]);
     this->contacts[this->index].setLastName(input[2]);
     this->contacts[this->index].setNickname(input[3]);
@@ -17,14 +18,16 @@ void PhoneBook::addContact(std::string input[6]) {
         this->book_size++;
 }
 
-std::string truncate(const std::string& str, size_t width) {
+std::string PhoneBook::truncate(const std::string& str, size_t width)
+{
     if (str.length() > width) {
         return str.substr(0, width - 1) + ".";
     }
     return str;
 }
 
-void PhoneBook::displayPhoneBook() {
+void PhoneBook::displayPhoneBook()
+{
     std::cout << "|" << std::setw(10) << std::right << std::setfill(' ') << "Index" << "|"
     << std::setw(10) << std::right << std::setfill(' ') << "First Name" << "|"
     << std::setw(10) << std::right << std::setfill(' ') << "Last Name" << "|"
@@ -38,10 +41,10 @@ void PhoneBook::displayPhoneBook() {
         << std::setw(10) << std::right << std::setfill(' ') << truncate(this->contacts[i].getNickname(), 10) << "|"
         << std::endl;
     }
-
 }
 
-void PhoneBook::printContact(int index) {   
+void PhoneBook::printContact(int index)
+{
     std::cout << "First Name: " << this->contacts[index].getFirstName() << std::endl; 
     std::cout << "Last Name: " << this->contacts[index].getLastName() << std::endl; 
     std::cout << "Nickname: " << this->contacts[index].getNickname() << std::endl; 

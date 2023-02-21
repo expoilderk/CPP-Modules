@@ -5,6 +5,7 @@ class PhoneBook {
 		Contact contacts[8];
 		int index;
 		int book_size;
+		std::string truncate(const std::string& str, size_t width);
 	public:
 		PhoneBook() : index(0), book_size(0) {};
 		int bookSize();

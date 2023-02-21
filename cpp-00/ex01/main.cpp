@@ -1,6 +1,7 @@
 #include "PhoneBook.hpp"
 
-void printSquareHeader(const std::string& text, int width, const std::string& textColor = "") {
+void printSquareHeader(const std::string& text, int width, const std::string& textColor = "")
+{
     int textWidth = text.length();
     int padding = (width - textWidth - 2) / 2;
     int leftPadding = padding;
@@ -14,7 +15,8 @@ void printSquareHeader(const std::string& text, int width, const std::string& te
     std::cout << std::setw(width) << std::setfill('-') << "" << std::endl;
 }
 
-void add(std::string input[6], PhoneBook& phonebook ) {
+void add(std::string input[6], PhoneBook& phonebook )
+{
 	printSquareHeader("ADD NEW CONTACT", 45, "\033[32m");
 	std::cout << "First Name: ";
 	std::getline(std::cin, input[1]);
@@ -31,23 +33,25 @@ void add(std::string input[6], PhoneBook& phonebook ) {
 	std::cout << "\n\033[32mContact saved successfully!\033[0m" << std::endl;
 }
 
-void search(std::string input, int index, PhoneBook& phonebook) {
-	
-	printSquareHeader("SEARCH CONTACT", 45, "\033[32m");
+void search(std::string input, int index, PhoneBook& phonebook)
+{
+	printSquareHeader("SAVED CONTACTS", 45, "\033[32m");
 	if (phonebook.bookSize() == 0) {
 		std::cout << "\n\033[31mError: PhoneBook is Empty!\033[0m" << std::endl;
 		return;
 	}
 
 	phonebook.displayPhoneBook();
-	std::cout << "\n\033[32mInsert Index: \033[0m";
+	std::cout << "\n\033[32mSearch by Index: \033[0m";
 	std::cin >> index;
 	while (std::cin.fail() || index < 0 || index >= phonebook.bookSize())
 	{
 		std::cout << "\n\033[31mError: Invalid Index!\033[0m" << std::endl;
-		std::cout << "\n\033[32mInsert Valid Index: \033[0m";
+		std::cout << "\n\033[32mInsert a valid Index: \033[0m";
 		std::cin >> index;
 	}
+
+	printSquareHeader("CONTACT INFORMATION", 45, "\033[32m");
 	phonebook.printContact(index);
 	std::cin.clear();
 	std::getline(std::cin, input);
@@ -69,7 +73,7 @@ int main()
 		else if (input[0] == "SEARCH")
 			search(input[0], index, phonebook);
 		else if (input[0] == "EXIT") {
-			std::cout << "Program finished!" << std::endl;
+			std::cout << "\n\033[32mPhoneBook closed and contacts deleted forever!\033[0m" << std::endl;
 			break ;
 		} else
 			std::cout << "\033[31mINVALID INPUT!\033[0m" << std::endl;
