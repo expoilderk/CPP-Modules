@@ -1,4 +1,10 @@
+#ifndef PHONEBOOK_HPP
+#define PHONEBOOK_HPP
+
 #include "Contact.hpp"
+#include <iostream>
+#include <iomanip>
+#include <string>
 
 class PhoneBook {
 	private:
@@ -13,3 +19,5 @@ class PhoneBook {
 		void displayPhoneBook();
 		void printContact(int index);
 };
+
+#endif // PHONEBOOK_HPP
