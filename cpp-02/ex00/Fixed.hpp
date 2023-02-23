@@ -4,21 +4,18 @@
 #include <iostream>
 #include <string>
 
-class Fixed
-{
-private:
-	int _data;
-public:
-	Fixed() : _data(0) {} //Construtor padrão
-	Fixed(int data) : _data(data) {} // Construtor com parâmetro
-	Fixed(const Fixed& other) : _data(other._data) {} // Construtor de cópia
-	Fixed& operator=(const Fixed& other) {
-		if (this != &other) {
-			_data = other._data;
-		}
-		return *this;
-	}
-	~Fixed(); // Destrutor
+class Fixed	{
+	private:
+		int _value;
+		static const int _fractionalBits = 8;
+	public:
+		Fixed(); //Construtor padrão
+		Fixed(const Fixed& other); // Construtor de cópia
+		Fixed& operator=(const Fixed& other); // Operador de atribuição
+		~Fixed(); // Destrutor
+
+		int getRawBits(void) const;
+		void setRawBits(int const raw);
 };
 
 #endif // FIXED_HPP

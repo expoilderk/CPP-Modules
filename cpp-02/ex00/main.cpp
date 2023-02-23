@@ -1,15 +1,15 @@
-#include "Harl.hpp"
+#include "Fixed.hpp"
 
 int main()
 {
-	Harl harl;
+	Fixed a;
+	Fixed b(a);
+	Fixed c;
+	c = b;
 
-	harl.complain("DEBUG");
-	harl.complain("INFO");
-	harl.complain("WARNING");
-	harl.complain("ERROR");
-
-	harl.complain("INVALID");
+	std::cout << a.getRawBits() << std::endl;
+	std::cout << b.getRawBits() << std::endl;
+	std::cout << c.getRawBits() << std::endl;
 
 	return 0;
 }
