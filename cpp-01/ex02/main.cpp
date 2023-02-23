@@ -3,18 +3,15 @@
 
 int main()
 {
-	std::string string = "HI THIS IS BRAIN";
-	std::string *stringPTR;
-	std::string stringREF;
+	std::string str = "HI THIS IS BRAIN";
+	std::string *stringPTR = &str;
+	std::string& stringREF = str;
 
-	stringPTR = &string;
-	stringREF = string;
-
-	std::cout << "Adress of str: " << &string << std::endl;
+	std::cout << "Adress of str: " << &str << std::endl;
 	std::cout << "Adress held by stringPTR: " << stringPTR << std::endl;
 	std::cout << "Adress held by stringREF: " << &stringREF << std::endl;
 
-	std::cout << "Value of str: " << string << std::endl;
+	std::cout << "Value of str: " << str << std::endl;
 	std::cout << "Value of stringPTR: " << *stringPTR << std::endl;
 	std::cout << "Value of stringREF: " << stringREF << std::endl;
 
