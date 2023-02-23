@@ -10,13 +10,13 @@ int main()
 	stringPTR = &string;
 	stringREF = string;
 
-	std::cout << &string << std::endl;
-	std::cout << stringPTR << std::endl;
-	std::cout << &stringREF << std::endl;
+	std::cout << "Adress of str: " << &string << std::endl;
+	std::cout << "Adress held by stringPTR: " << stringPTR << std::endl;
+	std::cout << "Adress held by stringREF: " << &stringREF << std::endl;
 
-	std::cout << string << std::endl;
-	std::cout << *stringPTR << std::endl;
-	std::cout << stringREF << std::endl;
+	std::cout << "Value of str: " << string << std::endl;
+	std::cout << "Value of stringPTR: " << *stringPTR << std::endl;
+	std::cout << "Value of stringREF: " << stringREF << std::endl;
 
 	return 0;
 }
