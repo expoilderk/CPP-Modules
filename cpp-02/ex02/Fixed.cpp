@@ -2,31 +2,31 @@
 
 // A default constructor that initializes the fixed-point number value to 0.
 Fixed::Fixed() : _value(0) {
-    std::cout << "Default constructor called" << std::endl;
+    // std::cout << "Default constructor called" << std::endl;
 }
 
 // Int Constructor
 Fixed::Fixed(const int value) {
-    std::cout << "Int constructor called" << std::endl;
+    // std::cout << "Int constructor called" << std::endl;
     this->_value = value << this->_fractionalBits;
 }
 
 // Float Constructor
 Fixed::Fixed(const float value) {
-    std::cout << "Float constructor called" << std::endl;
+    // std::cout << "Float constructor called" << std::endl;
     this->_value = (int)(value * (1 << this->_fractionalBits) + 0.5);
     // this->_value = (int)round(value * (1 << this->_fractionalBits));
 }
 
 // A copy constructor by using copy assignment operator overload.
 Fixed::Fixed(const Fixed &other) {
-    std::cout << "Copy constructor called" << std::endl;
+    // std::cout << "Copy constructor called" << std::endl;
     *this = other;
 }
 
 // A copy assignment operator overload.
 Fixed &Fixed::operator=(const Fixed &other) {
-    std::cout << "Copy assignment operator called" << std::endl;
+    // std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &other) {
 		this->_value = other.getRawBits();
 	}
@@ -35,7 +35,7 @@ Fixed &Fixed::operator=(const Fixed &other) {
 
 // A destructor.
 Fixed::~Fixed() {
-    std::cout << "Destructor called" << std::endl;
+    // std::cout << "Destructor called" << std::endl;
 }
 
 int Fixed::getRawBits(void) const {
@@ -106,14 +106,18 @@ Fixed Fixed::operator/(const Fixed &other) const {
 // Overload increment and decrement operators
 Fixed Fixed::operator++()
 {
+    std::cout << this->_value << std::endl;
     this->_value += (1 << this->_fractionalBits);
+    std::cout << this->_value << std::endl;
     return *this;
 }
 
 Fixed Fixed::operator++(int)
 {
     Fixed temp(*this);
+    std::cout << this->_value << std::endl;
     this->_value += (1 << this->_fractionalBits);
+    std::cout << this->_value << std::endl;
     return temp;
 }
 
