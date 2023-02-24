@@ -1,62 +1,74 @@
 #include "Fixed.hpp"
 
-// A default constructor that initializes the fixed-point number value to 0.
-Fixed::Fixed() : _value(0) {
+/* -- Default constructor -- */
+
+Fixed::Fixed() : _fixedValue(0) {
     std::cout << "Default constructor called" << std::endl;
 }
 
-// Int Constructor
-Fixed::Fixed(const int value) {
+/* -- Default constructor Int -- */
+
+Fixed::Fixed(const int other) {
     std::cout << "Int constructor called" << std::endl;
-    this->_value = value << this->_fractionalBits;
+    this->_fixedValue = other << this->_fractionalBits;
 }
 
-// Float Constructor
-Fixed::Fixed(const float value) {
+/* -- Default constructor Float -- */
+
+Fixed::Fixed(const float other) {
     std::cout << "Float constructor called" << std::endl;
-    this->_value = (int)(value * (1 << this->_fractionalBits) + 0.5);
-    // this->_value = (int)round(value * (1 << this->_fractionalBits));
+    this->_fixedValue = (int)(other * (1 << this->_fractionalBits) + 0.5);
 }
 
-// A copy constructor by using copy assignment operator overload.
+/* -- Copy constructor by using copy assignment operator overload -- */
+
 Fixed::Fixed(const Fixed &other) {
     std::cout << "Copy constructor called" << std::endl;
     *this = other;
 }
 
-// A copy assignment operator overload.
+/* -- Copy assignment operator overload -- */
+
 Fixed &Fixed::operator=(const Fixed &other) {
     std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &other) {
-		this->_value = other.getRawBits();
+		this->_fixedValue = other.getRawBits();
 	}
 	return *this;
 }
 
-// A destructor.
+/* -- Destructor -- */
+
 Fixed::~Fixed() {
     std::cout << "Destructor called" << std::endl;
 }
 
-int Fixed::getRawBits(void) const {
-    return this->_value;
-}
+/* -- Set -- */
 
 void Fixed::setRawBits(int const raw) {
-    this->_value = raw;
+    this->_fixedValue = raw;
 }
 
-// Convert fixed-point to float
-float Fixed::toFloat(void) const {
-    return (float)this->_value / (1 << this->_fractionalBits);
+/* -- Get -- */
+
+int Fixed::getRawBits(void) const {
+    return this->_fixedValue;
 }
 
-// Convert fixed-point to int
+/* -- toInt -- */
+
 int Fixed::toInt(void) const {
-    return this->_value >> this->_fractionalBits;
+    return this->_fixedValue >> this->_fractionalBits;
 }
 
-// Overload << operator
+/* -- toFloat -- */
+
+float Fixed::toFloat(void) const {
+    return (float)this->_fixedValue / (1 << this->_fractionalBits);
+}
+
+/* -- Overload << operator -- */
+
 std::ostream& operator<<(std::ostream& os, const Fixed& fixed) {
     return os << fixed.toFloat();
 }

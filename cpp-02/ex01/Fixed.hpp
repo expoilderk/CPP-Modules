@@ -5,15 +5,15 @@
 
 class Fixed	{
 	private:
-		int _value;
+		int _fixedValue;
 		static const int _fractionalBits = 8;
 	public:
-		Fixed(); //Construtor padrão
-		Fixed(const int value); //Construtor com parametro const int
-		Fixed(const float value); //Construtor com parametro const float
-		Fixed(const Fixed& other); // Construtor de cópia
-		Fixed& operator=(const Fixed& other); // Operador de atribuição
-		~Fixed(); // Destrutor
+		Fixed();
+		Fixed(const int other);
+		Fixed(const float other);
+		Fixed(const Fixed& other);
+		Fixed& operator=(const Fixed& other);
+		~Fixed();
 
 		int getRawBits(void) const;
 		void setRawBits(int const raw);

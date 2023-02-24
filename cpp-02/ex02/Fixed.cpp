@@ -1,18 +1,28 @@
 #include "Fixed.hpp"
 
+/* -- Default constructor -- */
+
 Fixed::Fixed() : _fixedValue(0) {}
+
+/* -- Default constructor Int -- */
 
 Fixed::Fixed(const int other) {
     this->_fixedValue = other << this->_fractionalBits;
 }
 
+/* -- Default constructor Float -- */
+
 Fixed::Fixed(const float other) {
     this->_fixedValue = (int)(other * (1 << this->_fractionalBits) + 0.5);
 }
 
+/* -- Copy constructor by using copy assignment operator overload -- */
+
 Fixed::Fixed(const Fixed &other) {
     *this = other;
 }
+
+/* -- Copy assignment operator overload -- */
 
 Fixed &Fixed::operator=(const Fixed &other) {
 	if (this != &other) {
@@ -21,22 +31,32 @@ Fixed &Fixed::operator=(const Fixed &other) {
 	return *this;
 }
 
+/* -- Destructor -- */
+
 Fixed::~Fixed() {}
 
-int Fixed::getRawBits(void) const {
-    return this->_fixedValue;
-}
+/* -- Set -- */
 
 void Fixed::setRawBits(int const raw) {
     this->_fixedValue = raw;
 }
 
-float Fixed::toFloat(void) const {
-    return (float)this->_fixedValue / (1 << this->_fractionalBits);
+/* -- Get -- */
+
+int Fixed::getRawBits(void) const {
+    return this->_fixedValue;
 }
+
+/* -- toInt -- */
 
 int Fixed::toInt(void) const {
     return this->_fixedValue >> this->_fractionalBits;
+}
+
+/* -- toFloat -- */
+
+float Fixed::toFloat(void) const {
+    return (float)this->_fixedValue / (1 << this->_fractionalBits);
 }
 
 /* -- Overload << operator -- */
