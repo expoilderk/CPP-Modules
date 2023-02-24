@@ -1,5 +1,4 @@
 #include "Fixed.hpp"
-#include <cmath>
 
 // A default constructor that initializes the fixed-point number value to 0.
 Fixed::Fixed() : _value(0) {
@@ -15,7 +14,8 @@ Fixed::Fixed(const int value) {
 // Float Constructor
 Fixed::Fixed(const float value) {
     std::cout << "Float constructor called" << std::endl;
-    this->_value = (int)round(value * (1 << this->_fractionalBits));
+    this->_value = (int)(value * (1 << this->_fractionalBits) + 0.5);
+    // this->_value = (int)round(value * (1 << this->_fractionalBits));
 }
 
 // A copy constructor by using copy assignment operator overload.
