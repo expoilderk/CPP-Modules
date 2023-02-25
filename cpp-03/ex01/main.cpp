@@ -5,7 +5,7 @@ int main()
 	ScavTrap a("Expoilderk");
 	ScavTrap b("Josh");
 
-	std::cout << "\n";
+	std::cout << "\nStatus: \n";
 	std::cout << "Name: " << a.getName() << " | Attack Damage: " << a.getAttackDamage(); 
 	std::cout << " | Hits: " << a.getHitPoints() << " | Energy: " << a.getEnergyPoints() << std::endl;
 	
@@ -20,7 +20,7 @@ int main()
 	b.takeDamage(a.getAttackDamage());
 	a.takeDamage(b.getAttackDamage());
 
-	std::cout << "\n";
+	std::cout << "\nStatus: \n";
 	std::cout << "Name: " << a.getName() << " | Attack Damage: " << a.getAttackDamage(); 
 	std::cout << " | Hits: " << a.getHitPoints() << " | Energy: " << a.getEnergyPoints() << std::endl;
 	
@@ -35,7 +35,7 @@ int main()
 	a.guardGate();
 	b.guardGate();
 
-	std::cout << "\n";
+	std::cout << "\nStatus: \n";
 	std::cout << "Name: " << a.getName() << " | Attack Damage: " << a.getAttackDamage(); 
 	std::cout << " | Hits: " << a.getHitPoints() << " | Energy: " << a.getEnergyPoints() << std::endl;
 	
