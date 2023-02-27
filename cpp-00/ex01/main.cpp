@@ -31,6 +31,16 @@ int ft_isspace(std::string &input)
 	return 0;
 }
 
+int search_check(std::string identifier, PhoneBook& phonebook)
+{
+	if (!(identifier.c_str()[0] >= '0') && !(identifier.c_str()[0] <= '7'))
+		return 1;
+	int index = atoi(identifier.c_str());
+	if (index >= phonebook.bookSize())
+		return 1;
+	return 0;
+}
+
 void get_input(const std::string& field, std::string &input)
 {
 	std::cout << field;
@@ -58,8 +68,11 @@ void add(std::string input[6], PhoneBook& phonebook )
 	std::cout << "\n\033[32mContact saved successfully!\033[0m" << std::endl;
 }
 
-void search(std::string input, int index, PhoneBook& phonebook)
+void search(std::string input, PhoneBook& phonebook)
 {
+	std::string identifier;
+	int index;
+
 	printSquareHeader("SAVED CONTACTS", 45, "\033[32m");
 	if (phonebook.bookSize() == 0) {
 		std::cout << "\n\033[31mError: PhoneBook is Empty!\033[0m" << std::endl;
@@ -67,14 +80,17 @@ void search(std::string input, int index, PhoneBook& phonebook)
 	}
 
 	phonebook.displayPhoneBook();
-	std::cout << "\n\033[32mSearch by Index: \033[0m" << std::endl;
-	std::cin >> index;
-	while (std::cin.fail() || index < 0 || index >= phonebook.bookSize())
+	std::cout << "\n\033[32mSearch by Index: \033[0m";
+	std::cin >> identifier;
+
+	while (search_check(identifier, phonebook))
 	{
+		std::cout << identifier << std::endl;
 		std::cout << "\n\033[31mError: Invalid Index!\033[0m" << std::endl;
 		std::cout << "\n\033[32mInsert a valid Index: \033[0m";
-		std::cin >> index;
+		std::cin >> identifier;
 	}
+	index = atoi(identifier.c_str());
 
 	printSquareHeader("CONTACT INFORMATION", 45, "\033[32m");
 	phonebook.printContact(index);
@@ -86,7 +102,6 @@ int main()
 {
 	PhoneBook phonebook;
 	std::string input[6];
-	int index = 0;
 
 	printSquareHeader("WELCOME TO PHONEBOOK", 45, "\033[32m");
 	while (!std::cin.eof())
@@ -96,7 +111,7 @@ int main()
 		if (input[0] == "ADD")
 			add(input, phonebook);
 		else if (input[0] == "SEARCH")
-			search(input[0], index, phonebook);
+			search(input[0], phonebook);
 		else if (input[0] == "EXIT") {
 			std::cout << "\n\033[32mPhoneBook closed and contacts deleted forever!\033[0m" << std::endl;
 			break ;
