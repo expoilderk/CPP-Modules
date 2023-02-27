@@ -15,19 +15,44 @@ void printSquareHeader(const std::string& text, int width, const std::string& te
     std::cout << std::setw(width) << std::setfill('-') << "" << std::endl;
 }
 
+int ft_isspace(std::string &input)
+{
+	size_t i = 0;
+	size_t j = 0;
+
+	while (i < input.length())
+	{
+		if (std::isspace(input.c_str()[i]))
+			j++;
+		i++;
+	}
+	if (i == j)
+		return 1;
+	return 0;
+}
+
+void get_input(const std::string& field, std::string &input)
+{
+	std::cout << field;
+	std::getline(std::cin, input);
+
+	while (input.empty() || ft_isspace(input))
+	{
+		std::cout << "\n\033[31mError: Empty field is not accepted!\033[0m" << std::endl;
+		std::cout << field;
+		std::getline(std::cin, input);
+	}
+}
+
 void add(std::string input[6], PhoneBook& phonebook )
 {
 	printSquareHeader("ADD NEW CONTACT", 45, "\033[32m");
-	std::cout << "First Name: ";
-	std::getline(std::cin, input[1]);
-	std::cout << "Last Name: ";
-	std::getline(std::cin, input[2]);
-	std::cout << "Nickname: ";
-	std::getline(std::cin, input[3]);
-	std::cout << "Phone Number: ";
-	std::getline(std::cin, input[4]);
-	std::cout << "Darkest Secret: ";
-	std::getline(std::cin, input[5]);
+
+	get_input("First Name: ", input[1]);
+	get_input("Last Name: ", input[2]);
+	get_input("Nickname: ", input[3]);
+	get_input("Phone Number: ", input[4]);
+	get_input("Darkest Secret: ", input[5]);
 
 	phonebook.addContact(input);
 	std::cout << "\n\033[32mContact saved successfully!\033[0m" << std::endl;
@@ -42,7 +67,7 @@ void search(std::string input, int index, PhoneBook& phonebook)
 	}
 
 	phonebook.displayPhoneBook();
-	std::cout << "\n\033[32mSearch by Index: \033[0m";
+	std::cout << "\n\033[32mSearch by Index: \033[0m" << std::endl;
 	std::cin >> index;
 	while (std::cin.fail() || index < 0 || index >= phonebook.bookSize())
 	{
@@ -64,7 +89,7 @@ int main()
 	int index = 0;
 
 	printSquareHeader("WELCOME TO PHONEBOOK", 45, "\033[32m");
-	while (42)
+	while (!std::cin.eof())
 	{
 		printSquareHeader("CHOOSE OPTION: ADD | SEARCH | EXIT", 45, "\033[32m");
 		std::getline(std::cin, input[0]);
