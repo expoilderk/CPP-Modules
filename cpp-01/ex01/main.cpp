@@ -1,12 +1,12 @@
 #include "Zombie.hpp"
 
-Zombie* zombieHorde( int N, std::string name );
+Zombie *zombieHorde(int N, std::string name);
 
 int main()
 {
 	int size = 5;
 
-	Zombie* horde = zombieHorde(size, "ZombieHorde");
+	Zombie *horde = zombieHorde(size, "Marvin");
 
 	for (int i = 0; i < size; i++)
 	{
