@@ -1,27 +1,39 @@
 #include "FragTrap.hpp"
 
-/* -- Default constructor -- */
-
-FragTrap::FragTrap() {
+FragTrap::FragTrap(void) : ClapTrap()
+{
+	setHitPoints(100);
+	setEnergyPoints(100);
+	setAttackDamage(30);
 	std::cout << "FragTrap Default constructor called" << std::endl;
 }
 
-FragTrap::FragTrap(std::string name) {
-	this->_name = name;
-	this->_hitPoints = 100;
-	this->_energyPoints = 100;
-	this->_attackDamage = 30;
-
-	std::cout << "FragTrap Default constructor called" << std::endl;
+FragTrap::FragTrap(std::string name) : ClapTrap(name)
+{
+	setHitPoints(100);
+	setEnergyPoints(100);
+	setAttackDamage(30);
+	std::cout << "FragTrap Named constructor called" << std::endl;
 }
 
-/* -- Destructor -- */
+FragTrap::FragTrap(const FragTrap &other) : ClapTrap(other)
+{
+	std::cout << "ScavTrap Copy constructor called" << std::endl;
+}
 
-FragTrap::~FragTrap() {
+FragTrap &FragTrap::operator=(const FragTrap &other)
+{
+	std::cout << "FragTrap Copy assignment operator called" << std::endl;
+	ClapTrap::operator=(other);
+	return *this;
+}
+
+FragTrap::~FragTrap()
+{
 	std::cout << "FragTrap Destructor called" << std::endl;
 }
 
 void FragTrap::highFivesGuys()
 {
-	std::cout << "FragTrap " << this->_name << " positive high fives." << std::endl;
+	std::cout << getName() << ": Let's celebrate with a high five! You're doing great!" << std::endl;
 }

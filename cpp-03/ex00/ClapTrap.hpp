@@ -4,33 +4,34 @@
 #include <iostream>
 #include <string>
 
-class ClapTrap	{
-	private:
-		std::string _name;
-		int _hitPoints;
-		int _energyPoints;
-		int _attackDamage;
-	public:
-		ClapTrap(std::string name);
-		ClapTrap(const ClapTrap& other);
-		ClapTrap& operator=(const ClapTrap& other);
-		~ClapTrap();
+class ClapTrap
+{
+private:
+	std::string _name;
+	int _hitPoints;
+	int _energyPoints;
+	int _attackDamage;
 
-		void attack(const std::string& target);
-		void takeDamage(unsigned int amount);
-		void beRepaired(unsigned int amount);
+public:
+	ClapTrap(void);
+	ClapTrap(std::string name);
+	ClapTrap(const ClapTrap &other);
+	ClapTrap &operator=(const ClapTrap &other);
+	~ClapTrap(void);
 
-		/* -- Setters -- */
-		void setName(std::string const raw);
-		void setHitPoints(int const raw);
-		void setEnergyPoints(int const raw);
-		void setAttackDamage(int const raw);
+	void attack(const std::string &target);
+	void takeDamage(unsigned int amount);
+	void beRepaired(unsigned int amount);
 
-		/* -- Getters -- */
-		std::string getName(void) const;
-		int getHitPoints(void) const;
-		int getEnergyPoints(void) const;
-		int getAttackDamage(void) const;
+	void setName(std::string const raw);
+	void setHitPoints(int const raw);
+	void setEnergyPoints(int const raw);
+	void setAttackDamage(int const raw);
+
+	std::string getName(void) const;
+	int getHitPoints(void) const;
+	int getEnergyPoints(void) const;
+	int getAttackDamage(void) const;
 };
 
 #endif // CLAPTRAP_HPP
