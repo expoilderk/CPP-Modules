@@ -1,6 +1,6 @@
-#include "../includes/Dog.hpp"
+#include "Dog.hpp"
 
-Dog::Dog() : AAnimal("Dog"), _brain(new Brain())
+Dog::Dog() : Animal("Dog"), _brain(new Brain())
 {
 	std::cout << "Dog Default constructor called" << std::endl;
 }
@@ -11,7 +11,7 @@ Dog::~Dog()
 	delete this->_brain;
 }
 
-Dog::Dog(const Dog &other) : AAnimal(other)
+Dog::Dog(const Dog &other) : Animal(other)
 {
 	std::cout << "Dog Copy constructor called" << std::endl;
 	this->_brain = new Brain(*other._brain);

@@ -1,4 +1,4 @@
-#include "../includes/Animal.hpp"
+#include "Animal.hpp"
 
 Animal::Animal() : _type("Animal")
 {

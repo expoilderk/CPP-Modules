@@ -1,4 +1,4 @@
-#include "../includes/Brain.hpp"
+#include "Brain.hpp"
 
 Brain::Brain()
 {
