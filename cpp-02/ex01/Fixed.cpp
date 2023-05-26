@@ -5,12 +5,12 @@ Fixed::Fixed() : _fixedValue(0)
     std::cout << "Default constructor called" << std::endl;
 }
 
-/* Aqui estamos convertendo um número inteiro para o formato
-de ponto fixo. Isso é feito usando o operador de deslocamento
-de bits para a esquerda (<<), que multiplica o número por um
-fator específico. O deslocamento de bits representa a parte
-decimal do número no formato de ponto fixo. O resultado é
-armazenado para representar o valor no formato de ponto fixo. */
+/* Here we are converting an integer to
+fixed-point format. This is done using the bit shift operator
+shift operator (<<), which multiplies the number by a specific
+factor. The bit shift represents the
+decimal part of the number in fixed point format. The result is
+stored to represent the value in fixed-point format. */
 
 Fixed::Fixed(const int other)
 {
@@ -18,14 +18,14 @@ Fixed::Fixed(const int other)
     this->_fixedValue = other << this->_fractionalBits;
 }
 
-/* Aqui estamos convertendo um número em ponto flutuante (float)
-para o formato de ponto fixo. O número em ponto flutuante é
-multiplicado por um fator específico, que é obtido ao deslocar
-os bits para a esquerda. Esse fator é determinado pelo valor
-armazenado no atributo "_fractionalBits". O resultado da
-multiplicação é arredondado para o valor mais próximo e,
-em seguida, atribuído ao atributo "_fixedValue" para representar
-o valor no formato de ponto fixo. */
+/* Here we are converting a floating point (float) number
+to fixed point format. The floating point number is
+multiplied by a specific factor, which is obtained by shifting
+the bits to the left. This factor is determined by the value
+stored in the "_fractionalBits" attribute. The result of the
+result of the multiplication is rounded up to the nearest value and
+then assigned to the "_fixedValue" attribute to represent
+the value in fixed point format. */
 
 Fixed::Fixed(const float other)
 {
