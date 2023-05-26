@@ -1,20 +1,14 @@
 #include "WrongCat.hpp"
 
-/* -- Default constructor -- */
-
 WrongCat::WrongCat() : WrongAnimal("WrongCat")
 {
     std::cout << "WrongCat Default constructor called" << std::endl;
 }
 
-/* -- Copy constructor by using copy assignment operator overload -- */
-
 WrongCat::WrongCat(const WrongCat &other) : WrongAnimal(other)
 {
     std::cout << "WrongCat Copy constructor called" << std::endl;
 }
-
-/* -- Copy assignment operator overload -- */
 
 WrongCat &WrongCat::operator=(const WrongCat &other)
 {

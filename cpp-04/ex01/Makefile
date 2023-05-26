@@ -1,4 +1,4 @@
-NAME = Polymorphism
+NAME = Brain
 
 FILES = main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
 

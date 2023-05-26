@@ -1,20 +1,14 @@
 #include "Dog.hpp"
 
-/* -- Default constructor -- */
-
 Dog::Dog() : Animal("Dog")
 {
     std::cout << "Dog Default constructor called" << std::endl;
 }
 
-/* -- Copy constructor by using copy assignment operator overload -- */
-
 Dog::Dog(const Dog &other) : Animal(other)
 {
     std::cout << "Dog Copy constructor called" << std::endl;
 }
-
-/* -- Copy assignment operator overload -- */
 
 Dog &Dog::operator=(const Dog &other)
 {

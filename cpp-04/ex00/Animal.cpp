@@ -1,28 +1,20 @@
 #include "Animal.hpp"
 
-/* -- Default empty constructor -- */
-
 Animal::Animal() : _type("Animal")
-{
-    std::cout << "Animal Default empty constructor called" << std::endl;
-}
-
-/* -- Default constructor -- */
-
-Animal::Animal(std::string type) : _type(type)
 {
     std::cout << "Animal Default constructor called" << std::endl;
 }
 
-/* -- Copy constructor by using copy assignment operator overload -- */
+Animal::Animal(std::string type) : _type(type)
+{
+    std::cout << "Animal " << type << " constructor called" << std::endl;
+}
 
 Animal::Animal(const Animal &other)
 {
     std::cout << "Animal Copy constructor called" << std::endl;
     *this = other;
 }
-
-/* -- Copy assignment operator overload -- */
 
 Animal &Animal::operator=(const Animal &other)
 {

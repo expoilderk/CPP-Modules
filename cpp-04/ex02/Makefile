@@ -1,6 +1,6 @@
-NAME = Polymorphism
+NAME = Abstract
 
-FILES = main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
+FILES = main.cpp AAnimal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
 
 SRC = $(addprefix src/, $(FILES))
 

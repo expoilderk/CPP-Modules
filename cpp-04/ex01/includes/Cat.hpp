@@ -3,21 +3,22 @@
 
 #include <iostream>
 #include "Animal.hpp"
+#include "Brain.hpp"
 
 class Cat : public Animal
 {
 private:
-    Brain *_brain;
+	Brain *_brain;
 
 public:
-    Cat();
-    Cat(const Cat &other);
-    Cat &operator=(const Cat &other);
-    ~Cat();
+	Cat();
+	Cat(const Cat &other);
+	Cat &operator=(const Cat &other);
+	~Cat();
 
-    Brain *getBrain(void) const;
+	Brain *getBrain(void) const;
 
-    void makeSound(void) const;
+	void makeSound(void) const;
 };
 
 #endif // CAT_HPP

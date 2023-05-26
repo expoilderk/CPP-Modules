@@ -2,22 +2,23 @@
 #define DOG_HPP
 
 #include <iostream>
-#include "Animal.hpp"
+#include "AAnimal.hpp"
+#include "Brain.hpp"
 
-class Dog : public Animal
+class Dog : public AAnimal
 {
 private:
-    Brain *_brain;
+	Brain *_brain;
 
 public:
-    Dog();
-    Dog(const Dog &other);
-    Dog &operator=(const Dog &other);
-    ~Dog();
+	Dog();
+	Dog(const Dog &other);
+	Dog &operator=(const Dog &other);
+	~Dog();
 
-    Brain *getBrain(void) const;
+	Brain *getBrain(void) const;
 
-    void makeSound(void) const;
+	void makeSound(void) const;
 };
 
 #endif // DOG_HPP
