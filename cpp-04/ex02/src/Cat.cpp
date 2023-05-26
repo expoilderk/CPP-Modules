@@ -1,16 +1,8 @@
 #include "../includes/Cat.hpp"
 
-Cat::Cat() : AAnimal("Cat")
+Cat::Cat() : AAnimal("Cat"), _brain(new Brain())
 {
 	std::cout << "Cat Default constructor called" << std::endl;
-	try
-	{
-		this->_brain = new Brain();
-	}
-	catch (const std::bad_alloc &e)
-	{
-		std::cout << "Failed: Memory Allocation" << e.what() << std::endl;
-	}
 }
 
 Cat::Cat(const Cat &other) : AAnimal(other)

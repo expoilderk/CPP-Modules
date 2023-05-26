@@ -1,16 +1,8 @@
 #include "../includes/Dog.hpp"
 
-Dog::Dog() : AAnimal("Dog")
+Dog::Dog() : AAnimal("Dog"), _brain(new Brain())
 {
 	std::cout << "Dog Default constructor called" << std::endl;
-	try
-	{
-		this->_brain = new Brain();
-	}
-	catch (const std::bad_alloc &e)
-	{
-		std::cout << "Failed: Memory Allocation" << e.what() << std::endl;
-	}
 }
 
 Dog::~Dog()
